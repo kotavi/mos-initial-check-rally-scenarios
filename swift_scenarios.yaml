@@ -1,0 +1,88 @@
+---
+  SwiftObjects.create_container_and_object_then_delete_all:
+    -
+      args:
+        objects_per_container: {{swift_objects_per_container}}
+        object_size: 102400
+      runner:
+        type: "constant"
+        times: {{run_N_times}}
+        concurrency: {{number_of_concurrent_scenarios}}
+      context:
+        users:
+          tenants: {{number_of_tenants}}
+          users_per_tenant: {{users_per_tenant}}
+        roles:
+          - "admin"
+
+
+  SwiftObjects.create_container_and_object_then_download_object:
+    -
+      args:
+        objects_per_container: {{swift_objects_per_container}}
+        object_size: 1024
+      runner:
+        type: "constant"
+        times: {{run_N_times}}
+        concurrency: {{number_of_concurrent_scenarios}}
+      context:
+        users:
+          tenants: {{number_of_tenants}}
+          users_per_tenant: {{users_per_tenant}}
+        roles:
+          - "admin"
+
+
+  SwiftObjects.create_container_and_object_then_list_objects:
+    -
+      args:
+        objects_per_container: {{swift_objects_per_container}}
+        object_size: 5120
+      runner:
+        type: "constant"
+        times: {{run_N_times}}
+        concurrency: {{number_of_concurrent_scenarios}}
+      context:
+        users:
+          tenants: {{number_of_tenants}}
+          users_per_tenant: {{users_per_tenant}}
+        roles:
+          - "admin"
+
+
+  SwiftObjects.list_and_download_objects_in_containers:
+    -
+      runner:
+        type: "constant"
+        times: {{run_N_times}}
+        concurrency: {{number_of_concurrent_scenarios}}
+      context:
+        users:
+          tenants: {{number_of_tenants}}
+          users_per_tenant: {{users_per_tenant}}
+        roles:
+          - "admin"
+        swift_objects:
+          containers_per_tenant: {{swift_containers_per_tenant}}
+          objects_per_container: {{swift_objects_per_container}}
+          object_size: 10240
+
+
+  SwiftObjects.list_objects_in_containers:
+    -
+      runner:
+        type: "constant"
+        times: {{run_N_times}}
+        concurrency: {{number_of_concurrent_scenarios}}
+      context:
+        users:
+          tenants: {{number_of_tenants}}
+          users_per_tenant: {{users_per_tenant}}
+        roles:
+          - "admin"
+        swift_objects:
+          containers_per_tenant: {{swift_containers_per_tenant}}
+          objects_per_container: {{swift_objects_per_container}}
+          object_size: 1024
+
+

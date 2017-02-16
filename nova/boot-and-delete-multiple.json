@@ -1,0 +1,26 @@
+{
+  "NovaServers.boot_and_delete_multiple_servers": [
+    {
+      "runner": {
+        "type": "constant",
+        "concurrency": {{number_of_concurrent_scenarios}},
+        "times": {{run_N_times}}
+      },
+      "args": {
+        "count": {{nova_number_of_instances_to_boot}},
+        "image": {
+          "name": "{{image_name}}"
+        },
+        "flavor": {
+          "name": "{{flavor_name}}"
+        }
+      },
+      "context": {
+        "users": {
+          "users_per_tenant": {{users_per_tenant}},
+          "tenants": {{number_of_tenants}}
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+---
+  NovaServices.list_services:
+    -
+      runner:
+        type: "constant"
+        times: {{run_N_times}}
+        concurrency: {{number_of_concurrent_scenarios}}

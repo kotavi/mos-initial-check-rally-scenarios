@@ -1,0 +1,8 @@
+---
+  KeystoneBasic.create_update_and_delete_tenant:
+    -
+      args: {}
+      runner:
+        type: "constant"
+        times: {{run_N_times}}
+        concurrency: {{number_of_concurrent_scenarios}}

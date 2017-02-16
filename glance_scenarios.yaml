@@ -1,0 +1,69 @@
+---
+  GlanceImages.create_and_delete_image:
+    -
+      args:
+        image_location: {{glance_image_location}}
+        container_format: "bare"
+        disk_format: "qcow2"
+      runner:
+        type: "constant"
+        times: {{run_N_times}}
+        concurrency: {{number_of_concurrent_scenarios}}
+      context:
+        users:
+          tenants: {{number_of_tenants}}
+          users_per_tenant: {{users_per_tenant}}
+
+
+  GlanceImages.create_and_list_image:
+    -
+      args:
+        image_location: {{glance_image_location}}
+        container_format: "bare"
+        disk_format: "qcow2"
+      runner:
+        type: "constant"
+        times: {{run_N_times}}
+        concurrency: {{number_of_concurrent_scenarios}}
+      context:
+        users:
+          tenants: {{number_of_tenants}}
+          users_per_tenant: {{users_per_tenant}}
+
+
+  GlanceImages.create_image_and_boot_instances:
+    -
+      args:
+        image_location: {{glance_image_location}}
+        container_format: "bare"
+        disk_format: "qcow2"
+        flavor:
+            name: "{{flavor_name}}"
+        number_instances: {{glance_number_nova_servers_to_boot}}
+      runner:
+        type: "constant"
+        times: {{run_N_times}}
+        concurrency: {{number_of_concurrent_scenarios}}
+      context:
+        users:
+          tenants: {{number_of_tenants}}
+          users_per_tenant: {{users_per_tenant}}
+
+
+  GlanceImages.list_images:
+    -
+      runner:
+        type: "constant"
+        times: {{run_N_times}}
+        concurrency: {{number_of_concurrent_scenarios}}
+      context:
+        users:
+          tenants: {{number_of_tenants}}
+          users_per_tenant: {{users_per_tenant}}
+        images:
+          image_url: {{glance_image_location}}
+          image_type: "qcow2"
+          image_container: "bare"
+          images_per_tenant: {{glance_images_per_tenant_before_benchmarking}}
+
+

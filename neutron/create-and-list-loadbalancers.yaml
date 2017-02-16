@@ -1,0 +1,17 @@
+---
+  NeutronLoadbalancerV2.create_and_list_loadbalancers:
+    -
+      args:
+        lb_create_args: {}
+      runner:
+        type: "constant"
+        times: {{run_N_times}}
+        concurrency: {{number_of_concurrent_scenarios}}
+      context:
+        users:
+          tenants: {{number_of_tenants}}
+          users_per_tenant: {{users_per_tenant}}
+        network: {}
+      sla:
+        failure_rate:
+          max: {{sla_failure_rate_max}}

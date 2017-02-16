@@ -1,0 +1,20 @@
+{
+  "NovaFlavors.list_flavors": [
+    {
+      "runner": {
+        "type": "constant",
+        "concurrency": {{number_of_concurrent_scenarios}},
+        "times": {{run_N_times}}
+      },
+      "args": {
+        "detailed": {{nova_detailed_info}}
+      },
+      "context": {
+        "users": {
+          "tenants": {{number_of_tenants}},
+          "users_per_tenant": {{users_per_tenant}}
+        }
+      }
+    }
+  ]
+}

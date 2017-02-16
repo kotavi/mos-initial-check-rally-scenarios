@@ -1,0 +1,16 @@
+---
+  NeutronLoadbalancerV1.create_and_update_healthmonitors:
+    -
+      args:
+        healthmonitor_create_args: {}
+        healthmonitor_update_args: {}
+      runner:
+        type: "constant"
+        times: {{run_N_times}}
+        concurrency: {{number_of_concurrent_scenarios}}
+      context:
+        users:
+          tenants: {{number_of_tenants}}
+          users_per_tenant: {{users_per_tenant}}
+        quotas:
+          neutron: {{neutron_quotas_params}}

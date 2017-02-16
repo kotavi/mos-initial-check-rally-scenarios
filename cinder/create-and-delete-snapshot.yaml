@@ -1,0 +1,15 @@
+---
+  CinderVolumes.create_and_delete_snapshot:
+    -
+      args:
+          force: {{cinder_allow_snapshot}}
+      runner:
+        type: "constant"
+        times: {{run_N_times}}
+        concurrency: {{number_of_concurrent_scenarios}}
+      context:
+        users:
+          tenants: {{number_of_tenants}}
+          users_per_tenant: {{users_per_tenant}}
+        volumes:
+          size: {{cinder_volume_size_before_benchmarking}}

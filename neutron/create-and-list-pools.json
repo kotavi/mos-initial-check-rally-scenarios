@@ -1,0 +1,24 @@
+{
+    "NeutronLoadbalancerV1.create_and_list_pools": [
+        {
+            "args": {
+                "pool_create_args":{}
+            },
+            "runner": {
+                "type": "constant",
+                "times": {{run_N_times}},
+                "concurrency": {{number_of_concurrent_scenarios}}
+            },
+            "context": {
+                "users": {
+                    "tenants": {{number_of_tenants}},
+                    "users_per_tenant": {{users_per_tenant}}
+                },
+                "network":{},
+                "quotas": {
+                    "neutron": {{neutron_quotas_params}}
+                }
+            }
+        }
+    ]
+}

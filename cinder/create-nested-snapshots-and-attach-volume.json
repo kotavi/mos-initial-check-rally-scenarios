@@ -1,0 +1,33 @@
+{
+    "CinderVolumes.create_nested_snapshots_and_attach_volume": [
+        {
+            "args": {
+                "size": {
+                    "min": {{cinder_volume_min_size}},
+                    "max": {{cinder_volume_max_size}}
+                },
+                "nested_level": {{cinder_nested_cloning_level}}
+            },
+            "runner": {
+                "type": "constant",
+                "times": {{run_N_times}},
+                "concurrency": {{number_of_concurrent_scenarios}}
+            },
+            "context": {
+                "users": {
+                    "tenants": {{number_of_tenants}},
+                    "users_per_tenant": {{users_per_tenant}}
+                },
+                "servers": {
+                    "image": {
+                        "name": "{{image_name}}"
+                    },
+                    "flavor": {
+                        "name": "{{flavor_name}}"
+                    },
+                    "servers_per_tenant": {{servers_per_tenant_before_benchmarking}}
+                }
+            }
+        }
+    ]
+}

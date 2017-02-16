@@ -1,0 +1,14 @@
+{
+    "KeystoneBasic.create_tenant_with_users": [
+        {
+            "args": {
+                "users_per_tenant": {{users_per_tenant}}
+            },
+            "runner": {
+                "type": "constant",
+                "times": {{run_N_times}},
+                "concurrency": {{number_of_concurrent_scenarios}}
+            }
+        }
+    ]
+}
