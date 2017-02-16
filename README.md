@@ -1,0 +1,1 @@
+# mos-initial-check-rally-scenarios
