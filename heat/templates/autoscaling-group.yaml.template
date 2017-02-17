@@ -8,7 +8,7 @@ parameters:
       - custom_constraint: nova.flavor
   image:
     type: string
-    default: { get_param: image }
+    default: TestVM
     constraints:
       - custom_constraint: glance.image
   scaling_adjustment:

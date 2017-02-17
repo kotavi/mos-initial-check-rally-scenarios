@@ -42,6 +42,15 @@ if os.access('temp.file', os.R_OK):
 
 fn.close()
 all_yaml_scenarios_file.close()
-
 os.system('rm temp.file')
+
+
+if file_name == 'heat_scenarios.yaml':
+    file_data = open(file_name).read()
+    with open(file_name, 'w') as fn:
+        fn.write('{% set image_name = image_name or "^cirros.*-disk$" %}\n')
+        fn.write('{% set public_net = neutron_floating_network or "public" %}\n')
+        fn.write(file_data)
+    fn.close()
+
 

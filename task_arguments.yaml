@@ -78,7 +78,7 @@
       vip: -1,
       security_group: -1
   }
-  neutron_floating_network: "public" # str, external network for floating IP creation
+  neutron_floating_network: "admin_floating_net" # str, external network for floating IP creation
   neutron_ports_per_network: 10
   neutron_subnets_per_network: 2
   network_provider_type: "vxlan"

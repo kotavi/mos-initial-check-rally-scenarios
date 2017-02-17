@@ -7,7 +7,7 @@ parameters:
     default: public
   image:
     type: string
-    default: { get_param: image }
+    default: TestVM
   flavor:
     type: string
     default: m1.tiny
