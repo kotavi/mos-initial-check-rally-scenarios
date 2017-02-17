@@ -29,7 +29,7 @@
   cinder_volumes_per_tenant: 4 # this will be executed before benchmarking
 
 #parameters for Glance
-  glance_image_location: "http://download.cirros-cloud.net/0.3.4/cirros-0.3.4-x86_64-disk.img"
+  glance_image_location: "https://download.cirros-cloud.net/0.3.5/cirros-0.3.5-i386-disk.img"
   glance_number_nova_servers_to_boot: 2
   glance_images_per_tenant_before_benchmarking: 4
 

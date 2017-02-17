@@ -2,10 +2,7 @@
   HeatStacks.create_and_delete_stack:
     -
       args:
-        template_path: "heat/templates/resource-group-server-with-volume.yaml.template"
-        parameters:
-           num_instances: {{num_instances_in_stack}}
-        files: ["heat/templates/server-with-volume.yaml.template"]
+        template_path: "heat/templates/default.yaml.template"
       runner:
         type: "constant"
         times: {{run_N_times}}
@@ -15,8 +12,7 @@
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
 
-
-  HeatStacks.create_and_delete_stack:
+   # create-and-delete-stack-with-delay
     -
       args:
         template_path: "heat/templates/resource-group-with-constraint.yaml.template"
@@ -29,7 +25,7 @@
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
 
-  HeatStacks.create_and_delete_stack:
+  # create-and-delete-stack-with-neutron
     -
       args:
         template_path: "heat/templates/server-with-ports.yaml.template"
@@ -42,8 +38,7 @@
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
 
-
-  HeatStacks.create_and_delete_stack:
+  # create-and-delete-stack-with-volume
     -
       args:
         template_path: "heat/templates/server-with-volume.yaml.template"
@@ -56,11 +51,13 @@
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
 
-
-  HeatStacks.create_and_delete_stack:
+  # create-and-delete-stack-resource-group
     -
       args:
-        template_path: "heat/templates/default.yaml.template"
+        template_path: "heat/templates/resource-group-server-with-volume.yaml.template"
+        parameters:
+           num_instances: {{num_instances_in_stack}}
+        files: ["heat/templates/server-with-volume.yaml.template"]
       runner:
         type: "constant"
         times: {{run_N_times}}
@@ -69,7 +66,6 @@
         users:
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
-
 
   HeatStacks.create_and_list_stack:
     -
@@ -196,6 +192,7 @@
           users_per_tenant: {{users_per_tenant}}
 
   HeatStacks.create_update_delete_stack:
+  # create-update-delete-stack-add-res
     -
       args:
         template_path: "heat/templates/random-strings.yaml.template"
@@ -209,8 +206,7 @@
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
 
-
-  HeatStacks.create_update_delete_stack:
+  # create-update-delete-stack-del-res
     -
       args:
         template_path: "heat/templates/random-strings.yaml.template"
@@ -224,8 +220,7 @@
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
 
-
-  HeatStacks.create_update_delete_stack:
+  # create-update-delete-stack-increase
     -
       args:
         template_path: "heat/templates/resource-group.yaml.template"
@@ -239,8 +234,7 @@
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
 
-
-  HeatStacks.create_update_delete_stack:
+  # create-update-delete-stack-inplace
     -
       args:
         template_path: "heat/templates/autoscaling-policy.yaml.template"
@@ -254,8 +248,7 @@
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
 
-
-  HeatStacks.create_update_delete_stack:
+  # create-update-delete-stack-reduce
     -
       args:
         template_path: "heat/templates/resource-group.yaml.template"
@@ -269,8 +262,7 @@
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
 
-
-  HeatStacks.create_update_delete_stack:
+  # create-update-delete-stack-replace
     -
       args:
         template_path: "heat/templates/random-strings.yaml.template"
@@ -283,7 +275,6 @@
         users:
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
-
 
   HeatStacks.list_stacks_and_events:
     -

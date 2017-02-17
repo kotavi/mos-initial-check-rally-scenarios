@@ -91,6 +91,19 @@
     -
       args:
         size: {{cinder_volume_size}}
+        image:
+            name: "{{image_name}}"
+      runner:
+        type: "constant"
+        times: {{run_N_times}}
+        concurrency: {{number_of_concurrent_scenarios}}
+      context:
+        users:
+          tenants: {{number_of_tenants}}
+          users_per_tenant: {{users_per_tenant}}
+    -
+      args:
+        size: {{cinder_volume_size}}
       runner:
         type: "constant"
         times: {{run_N_times}}
@@ -375,21 +388,6 @@
         failure_rate:
           max: {{sla_failure_rate_max}}
 
-
-  CinderVolumes.create_and_delete_volume:
-    -
-      args:
-        size: {{cinder_volume_size}}
-        image:
-            name: "{{image_name}}"
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
 
   CinderVolumes.create_from_volume_and_delete_volume:
     -
