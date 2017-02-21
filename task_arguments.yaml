@@ -64,23 +64,28 @@
   nova_security_group_count: 5
   nova_rules_per_security_group: 10
   nova_detailed_info: True
+  # flavor_specification parameters
+#  instance_ram: 500
+#  instance_vcpus: 1
+#  instance_disk: 1
+#  instance_disk_read_bytes_sec: 10240
   flavor_specification: { ram: 500, vcpus : 1, disk: 1, extra_specs: { quota: {disk_read_bytes_sec: 10240  } } }
 
 # parameters for Neutron (-1 means unlimited)
   neutron_quotas_params: {
       floatingip: -1,
-      health_monitor: -1,
+#      health_monitor: -1,
       network: -1,
       subnet: -1,
-      pool: -1,
+#      pool: -1,
       port: -1,
       router: -1,
-      vip: -1,
+#      vip: -1,
       security_group: -1
   }
   neutron_floating_network: "admin_floating_net" # str, external network for floating IP creation
   neutron_ports_per_network: 10
   neutron_subnets_per_network: 2
-  network_provider_type: "vxlan"
+  network_provider_type: "vlan"
 
 

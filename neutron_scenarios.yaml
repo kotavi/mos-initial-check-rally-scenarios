@@ -16,22 +16,6 @@
           neutron: {{neutron_quotas_params}}
 
 
-  NeutronLoadbalancerV1.create_and_delete_healthmonitors:
-    -
-      args:
-        healthmonitor_create_args: {}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-        quotas:
-          neutron: {{neutron_quotas_params}}
-
-
   NeutronNetworks.create_and_delete_networks:
     -
       args:
@@ -44,23 +28,6 @@
         users:
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
-        quotas:
-          neutron: {{neutron_quotas_params}}
-
-
-  NeutronLoadbalancerV1.create_and_delete_pools:
-    -
-      args:
-        pool_create_args: {}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-        network: {}
         quotas:
           neutron: {{neutron_quotas_params}}
 
@@ -141,25 +108,6 @@
           neutron: {{neutron_quotas_params}}
 
 
-  NeutronLoadbalancerV1.create_and_delete_vips:
-    -
-      args:
-        vip_create_args: {}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-        network: {}
-        lbaas:
-          pool: {}
-        quotas:
-          neutron: {{neutron_quotas_params}}
-
-
   NeutronNetworks.create_and_list_floating_ips:
     -
       args:
@@ -175,40 +123,6 @@
           users_per_tenant: {{users_per_tenant}}
         quotas:
           neutron: {{neutron_quotas_params}}
-
-
-  NeutronLoadbalancerV1.create_and_list_healthmonitors:
-    -
-      args:
-        healthmonitor_create_args: {}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-        quotas:
-          neutron: {{neutron_quotas_params}}
-
-
-  NeutronLoadbalancerV2.create_and_list_loadbalancers:
-    -
-      args:
-        lb_create_args: {}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-        network: {}
-      sla:
-        failure_rate:
-          max: {{sla_failure_rate_max}}
 
 
   NeutronNetworks.create_and_list_networks:
@@ -247,23 +161,6 @@
       sla:
         failure_rate:
           max: {{sla_failure_rate_max}}
-
-
-  NeutronLoadbalancerV1.create_and_list_pools:
-    -
-      args:
-        pool_create_args: {}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-        network: {}
-        quotas:
-          neutron: {{neutron_quotas_params}}
 
 
   NeutronNetworks.create_and_list_ports:
@@ -342,23 +239,6 @@
           neutron: {{neutron_quotas_params}}
 
 
-  NeutronLoadbalancerV1.create_and_list_vips:
-    -
-      args:
-        vip_create_args: {}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-        network: {}
-        quotas:
-          neutron: {{neutron_quotas_params}}
-
-
   NeutronNetworks.create_and_show_network:
     -
       args:
@@ -378,23 +258,6 @@
           max: {{sla_failure_rate_max}}
 
 
-  NeutronLoadbalancerV1.create_and_update_healthmonitors:
-    -
-      args:
-        healthmonitor_create_args: {}
-        healthmonitor_update_args: {}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-        quotas:
-          neutron: {{neutron_quotas_params}}
-
-
   NeutronNetworks.create_and_update_networks:
     -
       args:
@@ -410,24 +273,6 @@
         users:
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
-        quotas:
-          neutron: {{neutron_quotas_params}}
-
-
-  NeutronLoadbalancerV1.create_and_update_pools:
-    -
-      args:
-        pool_create_args: {}
-        pool_update_args: {}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-        network: {}
         quotas:
           neutron: {{neutron_quotas_params}}
 
@@ -516,24 +361,6 @@
         users:
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
-        quotas:
-          neutron: {{neutron_quotas_params}}
-
-
-  NeutronLoadbalancerV1.create_and_update_vips:
-    -
-      args:
-        vip_create_args: {}
-        vip_update_args: {}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-        network: {}
         quotas:
           neutron: {{neutron_quotas_params}}
 

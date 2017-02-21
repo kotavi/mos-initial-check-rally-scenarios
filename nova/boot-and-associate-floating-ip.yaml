@@ -5,7 +5,7 @@
         flavor:
             name: "{{flavor_name}}"
         image:
-            name: "{{image_name}}}"
+            name: "{{image_name}}"
       runner:
         type: "constant"
         times: {{run_N_times}}

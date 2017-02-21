@@ -182,6 +182,22 @@
         tenants: {{number_of_tenants}}
         users_per_tenant: {{users_per_tenant}}
 
+  # boot-and-block-migrate.json
+  - args:
+      flavor:
+        name: "{{flavor_name}}"
+      image:
+        name: "{{image_name}}"
+      block_migration: {{block_migration}}
+    runner:
+      type: "constant"
+      times: {{run_N_times}}
+      concurrency: {{number_of_concurrent_scenarios}}
+    context:
+      users:
+        tenants: {{number_of_tenants}}
+        users_per_tenant: {{users_per_tenant}}
+
 
   NovaServers.boot_and_migrate_server:
   - args:
@@ -548,9 +564,9 @@
         metadata:
           test_metadata: "true"
         availability_zone: "{{availability_zone}}"
-        ram: {{flavor_specification['ram']}}
-        vcpus: {{flavor_specification['vcpus']}}
-        disk: {{flavor_specification['disk']}}
+        ram: {{instance_ram}}
+        vcpus: {{instance_vcpus}}
+        disk: {{instance_disk}}
         boot_server_kwargs: {}
       runner:
         type: "constant"
@@ -588,11 +604,10 @@
         type: "constant"
         concurrency: {{number_of_concurrent_scenarios}}
         times: {{run_N_times}}
-      args: {
-        ram: {{flavor_specification['ram']}}
-        vcpus: {{flavor_specification['vcpus']}}
-        disk: {{flavor_specification['disk']}}
-      }
+      args:
+        ram: {{instance_ram}}
+        vcpus: {{instance_vcpus}}
+        disk: {{instance_disk}}
       context:
         users:
           tenants: {{number_of_tenants}}
@@ -600,20 +615,6 @@
       sla:
         failure_rate:
           max: {{sla_failure_rate_max}}
-
-
-  NovaFloatingIpsBulk.create_and_delete_floating_ips_bulk:
-    -
-      args:
-        start_cidr: "10.2.0.0/24"
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
 
 
   NovaKeypair.create_and_delete_keypair:
@@ -667,11 +668,10 @@
         type: "constant"
         concurrency: {{number_of_concurrent_scenarios}}
         times: {{run_N_times}}
-      args: {
-        ram: {{flavor_specification['ram']}}
-        vcpus: {{flavor_specification['vcpus']}}
-        disk: {{flavor_specification['disk']}}
-      }
+      args:
+        ram: {{instance_ram}}
+        vcpus: {{instance_vcpus}}
+        disk: {{instance_disk}}
       context:
         users:
           tenants: {{number_of_tenants}}
@@ -700,11 +700,10 @@
 
   NovaFlavors.create_and_list_flavor_access:
     -
-      args: {
-        ram: {{flavor_specification['ram']}}
-        vcpus: {{flavor_specification['vcpus']}}
-        disk: {{flavor_specification['disk']}}
-      }
+      args:
+        ram: {{instance_ram}}
+        vcpus: {{instance_vcpus}}
+        disk: {{instance_disk}}
       runner:
         type: "constant"
         times: {{run_N_times}}
@@ -721,6 +720,7 @@
         users:
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
+
 
   NovaSecGroup.create_and_list_secgroups:
     -
@@ -793,11 +793,10 @@
         type: "constant"
         concurrency: {{number_of_concurrent_scenarios}}
         times: {{run_N_times}}
-      args: {
-        ram: {{flavor_specification['ram']}}
-        vcpus: {{flavor_specification['vcpus']}}
-        disk: {{flavor_specification['disk']}}
-      }
+      args:
+        ram: {{instance_ram}}
+        vcpus: {{instance_vcpus}}
+        disk: {{instance_disk}}
       context:
         users:
           tenants: {{number_of_tenants}}
@@ -814,11 +813,12 @@
         type: "constant"
         concurrency: {{number_of_concurrent_scenarios}}
         times: {{run_N_times}}
-      args: {
-        ram: {{flavor_specification['ram']}}
-        vcpus: {{flavor_specification['vcpus']}}
-        disk: {{flavor_specification['disk']}}
-      }
+      args:
+        ram: {{instance_ram}}
+        vcpus: {{instance_vcpus}}
+        disk: {{instance_disk}}
+        extra_specs:
+          quota:disk_read_bytes_sec: {{instance_disk_read_bytes_sec}}
       context:
         users:
           tenants: {{number_of_tenants}}
@@ -830,11 +830,10 @@
 
   NovaFlavors.create_flavor:
     -
-      args: args: {
-        ram: {{flavor_specification['ram']}}
-        vcpus: {{flavor_specification['vcpus']}}
-        disk: {{flavor_specification['disk']}}
-      }
+      args:
+        ram: {{instance_ram}}
+        vcpus: {{instance_vcpus}}
+        disk: {{instance_disk}}
       runner:
         type: "constant"
         times: {{run_N_times}}

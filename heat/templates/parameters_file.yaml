@@ -1,0 +1,3 @@
+parameters:
+  image: "TestVM"
+  public_net: "admin_floating_net"
