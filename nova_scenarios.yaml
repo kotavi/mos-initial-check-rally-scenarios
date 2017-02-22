@@ -776,7 +776,10 @@
         type: "constant"
         concurrency: {{number_of_concurrent_scenarios}}
         times: {{run_N_times}}
-      args: {{flavor_specification}}
+      args:
+        ram: {{flavor_specification['ram']}}
+        vcpus: {{flavor_specification['vcpus']}}
+        disk: {{flavor_specification['disk']}}
       context:
         users:
           tenants: {{number_of_tenants}}
