@@ -2,22 +2,6 @@
     "CinderVolumes.create_volume_and_clone": [
         {
             "args": {
-                "size": {{cinder_volume_size}}
-            },
-            "runner": {
-                "type": "constant",
-                "times": {{run_N_times}},
-                "concurrency": {{number_of_concurrent_scenarios}}
-            },
-            "context": {
-                "users": {
-                    "tenants": {{number_of_tenants}},
-                    "users_per_tenant": {{users_per_tenant}}
-                }
-            }
-        },
-        {
-            "args": {
                 "size": {
                     "min": {{cinder_volume_min_size}},
                     "max": {{cinder_volume_max_size}}

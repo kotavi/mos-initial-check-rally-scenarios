@@ -103,17 +103,6 @@
           users_per_tenant: {{users_per_tenant}}
     -
       args:
-        size: {{cinder_volume_size}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-    -
-      args:
         size:
           min: {{cinder_volume_min_size}}
           max: {{cinder_volume_max_size}}
@@ -127,18 +116,6 @@
           users_per_tenant: {{users_per_tenant}}
 
   CinderVolumes.create_and_extend_volume:
-    -
-      args:
-        size: {{cinder_volume_size}}
-        new_size: {{cinder_volume_extend_size}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
     -
       args:
         size:
@@ -157,20 +134,6 @@
           users_per_tenant: {{users_per_tenant}}
 
   CinderVolumes.create_and_get_volume:
-    -
-      args:
-        size: {{cinder_volume_size}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-      sla:
-        failure_rate:
-          max: {{sla_failure_rate_max}}
     -
       args:
         size:
@@ -250,18 +213,6 @@
   CinderVolumes.create_and_list_volume:
     -
       args:
-        size: {{cinder_volume_size}}
-        detailed: {{cinder_detailed_info}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-    -
-      args:
         size:
           min: {{cinder_volume_min_size}}
           max: {{cinder_volume_max_size}}
@@ -293,27 +244,28 @@
         roles:
           - "Member"
 
-  CinderVolumes.create_volume_and_update_readonly_flag:
-    -
-      args:
-        size: {{cinder_volume_size}}
-        read_only: {{cinder_read_only_volume}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-      sla:
-        failure_rate:
-          max: {{sla_failure_rate_max}}
+#  CinderVolumes.create_volume_and_update_readonly_flag:
+#    -
+#      args:
+#        size: {{cinder_volume_size}}
+#        read_only: {{cinder_read_only_volume}}
+#      runner:
+#        type: "constant"
+#        times: {{run_N_times}}
+#        concurrency: {{number_of_concurrent_scenarios}}
+#      context:
+#        users:
+#          tenants: {{number_of_tenants}}
+#          users_per_tenant: {{users_per_tenant}}
+#      sla:
+#        failure_rate:
+#          max: {{sla_failure_rate_max}}
 
 
   CinderVolumes.create_and_update_volume:
     -
       args:
+        read_only: {{cinder_read_only_volume}}
         update_volume_kwargs:
            display_name: "name_updated"
            display_description: "desc_updated"
@@ -329,30 +281,14 @@
           users_per_tenant: {{users_per_tenant}}
 
 
+
   CinderVolumes.create_and_upload_volume_to_image:
-    -
-      args:
-        size: {{cinder_volume_size}}
-        force: {{cinder_allow_upload}}
-        container_format: "bare"
-        disk_format: "raw"
-        do_delete: {{do_delete}}
-        image:
-          name: "{{image_name}}"
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
     -
       args:
         size:
           min: {{cinder_volume_min_size}}
           max: {{cinder_volume_max_size}}
-        force: false
+        force: {{cinder_allow_upload}}
         container_format: "bare"
         disk_format: "raw"
         do_delete: {{do_delete}}
@@ -390,19 +326,6 @@
 
 
   CinderVolumes.create_from_volume_and_delete_volume:
-    -
-      args:
-        size: {{cinder_volume_size}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-        volumes:
-          size: {{cinder_volume_size_before_benchmarking}}
     -
       args:
         size:
@@ -485,41 +408,10 @@
           flavor:
             name: "{{flavor_name}}"
           servers_per_tenant: {{servers_per_tenant_before_benchmarking}}
-    -
-      args:
-          volume_type: {{cinder_name_volume_type}}
-          size:
-              min: {{cinder_volume_min_size}}
-              max: {{cinder_volume_max_size}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-        servers:
-          image:
-            name: "{{image_name}}"
-          flavor:
-            name: "{{flavor_name}}"
-          servers_per_tenant: {{servers_per_tenant_before_benchmarking}}
 
 
 
   CinderVolumes.create_volume_and_clone:
-    -
-      args:
-        size: {{cinder_volume_size}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
     -
       args:
         size:
@@ -572,17 +464,6 @@
 
 
   CinderVolumes.create_volume:
-    -
-      args:
-        size: {{cinder_volume_size}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
     -
       args:
         size:

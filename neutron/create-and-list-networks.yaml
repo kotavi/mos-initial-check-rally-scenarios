@@ -2,22 +2,6 @@
   NeutronNetworks.create_and_list_networks:
     -
       args:
-        network_create_args: {}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-        quotas:
-          neutron: {{neutron_quotas_params}}
-      sla:
-        failure_rate:
-          max: {{sla_failure_rate_max}}
-    -
-      args:
         network_create_args:
           provider:network_type: "{{network_provider_type}}"
       runner:

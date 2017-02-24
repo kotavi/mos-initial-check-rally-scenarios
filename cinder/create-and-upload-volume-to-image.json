@@ -2,34 +2,11 @@
     "CinderVolumes.create_and_upload_volume_to_image": [
         {
             "args": {
-                "size": {{cinder_volume_size}},
-                "force": {{cinder_allow_upload}},
-                "container_format": "bare",
-                "disk_format": "raw",
-                "do_delete": {{do_delete}},
-                "image": {
-                    "name": "{{image_name}}"
-                }
-            },
-            "runner": {
-                "type": "constant",
-                "times": {{run_N_times}},
-                "concurrency": {{number_of_concurrent_scenarios}}
-            },
-            "context": {
-                "users": {
-                    "tenants": {{number_of_tenants}},
-                    "users_per_tenant": {{users_per_tenant}}
-                }
-            }
-        },
-        {
-            "args": {
                 "size": {
                     "min": {{cinder_volume_min_size}},
                     "max": {{cinder_volume_max_size}}
                 },
-                "force": false,
+                "force": {{cinder_allow_upload}},
                 "container_format": "bare",
                 "disk_format": "raw",
                 "do_delete": {{do_delete}},
