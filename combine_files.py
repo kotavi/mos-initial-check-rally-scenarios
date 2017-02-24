@@ -24,9 +24,12 @@ files = glob.glob(path + '*.yaml')
 temp_file = open('temp.file', 'w')
 
 for afile in files:
-    data = open(afile).read()
-    temp_file.write(data)
-    temp_file.write('\n\n')
+    if 'task_arguments' in afile:
+        continue
+    else:
+        data = open(afile).read()
+        temp_file.write(data)
+        temp_file.write('\n\n')
 temp_file.close()
 
 all_yaml_scenarios_file = open(file_name, 'w')
