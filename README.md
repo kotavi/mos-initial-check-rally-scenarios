@@ -2,13 +2,14 @@
 
 #### How to update yaml files with all scenarios
 
-python combine_files.py <path_to_folder> <name_of_file>.yaml
+python combine_files.py `<path_to_folder>` `<name_of_file>.yaml`
 
 Example:
 
 python combine_files.py cinder/ cinder_scenarios.yaml
 
 Steps:
+
 1. deletes file cinder_scenarios.yaml if it exists
 2. from cinder/ folder collects all the yaml files to the list
 3. writes data from all files to temp.file
