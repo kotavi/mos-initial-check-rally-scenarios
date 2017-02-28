@@ -1,12 +1,12 @@
-{
-    "KeystoneBasic.create_user": [
-        {
-            "args": {},
-            "runner": {
-                "type": "constant",
-                "times": {{run_N_times}},
-                "concurrency": {{number_of_concurrent_scenarios}}
-            }
-        }
-    ]
-}
+//{
+//    "KeystoneBasic.create_user": [
+//        {
+//            "args": {},
+//            "runner": {
+//                "type": "constant",
+//                "times": {{run_N_times}},
+//                "concurrency": {{number_of_concurrent_scenarios}}
+//            }
+//        }
+//    ]
+//}

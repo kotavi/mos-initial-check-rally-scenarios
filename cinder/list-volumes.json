@@ -1,24 +1,24 @@
-{
-    "CinderVolumes.list_volumes": [
-        {
-            "args": {
-                "detailed": {{cinder_detailed_info}}
-            },
-            "runner": {
-                "type": "constant",
-                "times": {{run_N_times}},
-                "concurrency": {{number_of_concurrent_scenarios}}
-            },
-            "context": {
-                "users": {
-                    "tenants": {{number_of_tenants}},
-                    "users_per_tenant": {{users_per_tenant}}
-                },
-                "volumes": {
-                    "size": {{cinder_volume_size_before_benchmarking}},
-                    "volumes_per_tenant": {{cinder_volumes_per_tenant}}
-                }
-            }
-        }
-    ]
-}
+//{
+//    "CinderVolumes.list_volumes": [
+//        {
+//            "args": {
+//                "detailed": {{cinder_detailed_info}}
+//            },
+//            "runner": {
+//                "type": "constant",
+//                "times": {{run_N_times}},
+//                "concurrency": {{number_of_concurrent_scenarios}}
+//            },
+//            "context": {
+//                "users": {
+//                    "tenants": {{number_of_tenants}},
+//                    "users_per_tenant": {{users_per_tenant}}
+//                },
+//                "volumes": {
+//                    "size": {{cinder_volume_size_before_benchmarking}},
+//                    "volumes_per_tenant": {{cinder_volumes_per_tenant}}
+//                }
+//            }
+//        }
+//    ]
+//}

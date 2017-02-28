@@ -1,26 +1,26 @@
-//{
-//    "CinderVolumes.create_volume_and_update_readonly_flag": [
-//        {
-//            "args": {
-//                "size": {{cinder_volume_size}},
-//                "read_only": {{cinder_read_only_volume}}
-//            },
-//            "runner": {
-//                "type": "constant",
-//                "times": {{run_N_times}},
-//                "concurrency": {{number_of_concurrent_scenarios}}
-//            },
-//            "context": {
-//                "users": {
-//                    "tenants": {{number_of_tenants}},
-//                    "users_per_tenant": {{users_per_tenant}}
-//                }
-//            },
-//            "sla": {
-//                "failure_rate": {
-//                    "max": {{sla_failure_rate_max}}
-//                }
-//            }
-//        }
-//    ]
-//}
+{
+    "CinderVolumes.create_volume_and_update_readonly_flag": [
+        {
+            "args": {
+                "size": {{cinder_volume_size}},
+                "read_only": {{cinder_read_only_volume}}
+            },
+            "runner": {
+                "type": "constant",
+                "times": {{run_N_times}},
+                "concurrency": {{number_of_concurrent_scenarios}}
+            },
+            "context": {
+                "users": {
+                    "tenants": {{number_of_tenants}},
+                    "users_per_tenant": {{users_per_tenant}}
+                }
+            },
+            "sla": {
+                "failure_rate": {
+                    "max": {{sla_failure_rate_max}}
+                }
+            }
+        }
+    ]
+}

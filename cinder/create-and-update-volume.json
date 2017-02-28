@@ -2,7 +2,6 @@
     "CinderVolumes.create_and_update_volume": [
         {
             "args": {
-                "read_only": {{cinder_read_only_volume}},
                 "create_volume_kwargs": {},
                 "update_volume_kwargs": {
                     "display_name": "name_updated",

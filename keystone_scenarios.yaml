@@ -161,13 +161,13 @@
         concurrency: {{number_of_concurrent_scenarios}}
 
 
-  KeystoneBasic.create_tenant:
-    -
-      args: {}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
+#  KeystoneBasic.create_tenant:
+#    -
+#      args: {}
+#      runner:
+#        type: "constant"
+#        times: {{run_N_times}}
+#        concurrency: {{number_of_concurrent_scenarios}}
 
 
   KeystoneBasic.create_update_and_delete_tenant:
@@ -205,13 +205,13 @@
         concurrency: {{number_of_concurrent_scenarios}}
 
 
-  KeystoneBasic.create_user:
-    -
-      args: {}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
+#  KeystoneBasic.create_user:
+#    -
+#      args: {}
+#      runner:
+#        type: "constant"
+#        times: {{run_N_times}}
+#        concurrency: {{number_of_concurrent_scenarios}}
 
 
   KeystoneBasic.get_entities:

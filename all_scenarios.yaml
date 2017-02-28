@@ -102,23 +102,6 @@
   CinderVolumes.create_and_attach_volume:
     -
       args:
-          size: {{cinder_volume_size}}
-          image:
-            name: "{{image_name}}"
-          flavor:
-            name: "{{flavor_name}}"
-          create_volume_params:
-            availability_zone: "{{availability_zone}}"
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-    -
-      args:
         size:
           min: {{cinder_volume_min_size}}
           max: {{cinder_volume_max_size}}
@@ -173,30 +156,6 @@
   CinderVolumes.create_and_delete_volume:
     -
       args:
-        size: {{cinder_volume_size}}
-        image:
-            name: "{{image_name}}"
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-    -
-      args:
-        size: {{cinder_volume_size}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-    -
-      args:
         size:
           min: {{cinder_volume_min_size}}
           max: {{cinder_volume_max_size}}
@@ -210,18 +169,6 @@
           users_per_tenant: {{users_per_tenant}}
 
   CinderVolumes.create_and_extend_volume:
-    -
-      args:
-        size: {{cinder_volume_size}}
-        new_size: {{cinder_volume_extend_size}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
     -
       args:
         size:
@@ -240,20 +187,6 @@
           users_per_tenant: {{users_per_tenant}}
 
   CinderVolumes.create_and_get_volume:
-    -
-      args:
-        size: {{cinder_volume_size}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-      sla:
-        failure_rate:
-          max: {{sla_failure_rate_max}}
     -
       args:
         size:
@@ -333,18 +266,6 @@
   CinderVolumes.create_and_list_volume:
     -
       args:
-        size: {{cinder_volume_size}}
-        detailed: {{cinder_detailed_info}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-    -
-      args:
         size:
           min: {{cinder_volume_min_size}}
           max: {{cinder_volume_max_size}}
@@ -412,10 +333,13 @@
           users_per_tenant: {{users_per_tenant}}
 
 
+
   CinderVolumes.create_and_upload_volume_to_image:
     -
       args:
-        size: {{cinder_volume_size}}
+        size:
+          min: {{cinder_volume_min_size}}
+          max: {{cinder_volume_max_size}}
         force: {{cinder_allow_upload}}
         container_format: "bare"
         disk_format: "raw"
@@ -430,62 +354,30 @@
         users:
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
-    -
-      args:
-        size:
-          min: {{cinder_volume_min_size}}
-          max: {{cinder_volume_max_size}}
-        force: false
-        container_format: "bare"
-        disk_format: "raw"
-        do_delete: {{do_delete}}
-        image:
-          name: "{{image_name}}"
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
 
 
-  CinderVolumeTypes.create_volume_type_and_encryption_type:
-    -
-      args:
-        specs:
-          provider: "LuksEncryptor"
-          cipher: "aes-xts-plain64"
-          key_size: 512
-          control_location: "front-end"
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-      sla:
-        failure_rate:
-          max: {{sla_failure_rate_max}}
+#  CinderVolumeTypes.create_volume_type_and_encryption_type:
+#    -
+#      args:
+#        specs:
+#          provider: "LuksEncryptor"
+#          cipher: "aes-xts-plain64"
+#          key_size: 512
+#          control_location: "front-end"
+#      runner:
+#        type: "constant"
+#        times: {{run_N_times}}
+#        concurrency: {{number_of_concurrent_scenarios}}
+#      context:
+#        users:
+#          tenants: {{number_of_tenants}}
+#          users_per_tenant: {{users_per_tenant}}
+#      sla:
+#        failure_rate:
+#          max: {{sla_failure_rate_max}}
 
 
   CinderVolumes.create_from_volume_and_delete_volume:
-    -
-      args:
-        size: {{cinder_volume_size}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-        volumes:
-          size: {{cinder_volume_size_before_benchmarking}}
     -
       args:
         size:
@@ -568,41 +460,10 @@
           flavor:
             name: "{{flavor_name}}"
           servers_per_tenant: {{servers_per_tenant_before_benchmarking}}
-    -
-      args:
-          volume_type: {{cinder_name_volume_type}}
-          size:
-              min: {{cinder_volume_min_size}}
-              max: {{cinder_volume_max_size}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-        servers:
-          image:
-            name: "{{image_name}}"
-          flavor:
-            name: "{{flavor_name}}"
-          servers_per_tenant: {{servers_per_tenant_before_benchmarking}}
 
 
 
   CinderVolumes.create_volume_and_clone:
-    -
-      args:
-        size: {{cinder_volume_size}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
     -
       args:
         size:
@@ -654,10 +515,26 @@
           size: {{cinder_volume_size_before_benchmarking}}
 
 
-  CinderVolumes.create_volume:
+#  CinderVolumes.create_volume:
+#    -
+#      args:
+#        size:
+#          min: {{cinder_volume_min_size}}
+#          max: {{cinder_volume_max_size}}
+#      runner:
+#        type: "constant"
+#        times: {{run_N_times}}
+#        concurrency: {{number_of_concurrent_scenarios}}
+#      context:
+#        users:
+#          tenants: {{number_of_tenants}}
+#          users_per_tenant: {{users_per_tenant}}
+
+  CinderVolumes.create_volume_and_update_readonly_flag:
     -
       args:
         size: {{cinder_volume_size}}
+        read_only: {{cinder_read_only_volume}}
       runner:
         type: "constant"
         times: {{run_N_times}}
@@ -666,19 +543,9 @@
         users:
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
-    -
-      args:
-        size:
-          min: {{cinder_volume_min_size}}
-          max: {{cinder_volume_max_size}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
+      sla:
+        failure_rate:
+          max: {{sla_failure_rate_max}}
 
   CinderVolumes.list_transfers:
     -
@@ -714,21 +581,21 @@
           max: {{sla_failure_rate_max}}
 
 
-  CinderVolumes.list_volumes:
-    -
-      args:
-        detailed: {{cinder_detailed_info}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-        volumes:
-          size: {{cinder_volume_size_before_benchmarking}}
-          volumes_per_tenant: {{cinder_volumes_per_tenant}}
+#  CinderVolumes.list_volumes:
+#    -
+#      args:
+#        detailed: {{cinder_detailed_info}}
+#      runner:
+#        type: "constant"
+#        times: {{run_N_times}}
+#        concurrency: {{number_of_concurrent_scenarios}}
+#      context:
+#        users:
+#          tenants: {{number_of_tenants}}
+#          users_per_tenant: {{users_per_tenant}}
+#        volumes:
+#          size: {{cinder_volume_size_before_benchmarking}}
+#          volumes_per_tenant: {{cinder_volumes_per_tenant}}
 
 
   CinderVolumes.modify_volume_metadata:
@@ -819,18 +686,6 @@
 
 
   HeatStacks.create_and_delete_stack:
-    -
-      args:
-        template_path: "heat/templates/default.yaml.template"
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-
    # create-and-delete-stack-with-delay
     -
       args:
@@ -885,20 +740,6 @@
         users:
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
-
-  HeatStacks.create_and_list_stack:
-    -
-      args:
-        template_path: "heat/templates/default.yaml.template"
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-
 
   HeatStacks.create_check_delete_stack:
     -
@@ -1011,20 +852,6 @@
           users_per_tenant: {{users_per_tenant}}
 
   HeatStacks.create_update_delete_stack:
-  # create-update-delete-stack-add-res
-    -
-      args:
-        template_path: "heat/templates/random-strings.yaml.template"
-        updated_template_path: "heat/templates/updated-random-strings-add.yaml.template"
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-
   # create-update-delete-stack-del-res
     -
       args:
@@ -1288,13 +1115,13 @@
         concurrency: {{number_of_concurrent_scenarios}}
 
 
-  KeystoneBasic.create_tenant:
-    -
-      args: {}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
+#  KeystoneBasic.create_tenant:
+#    -
+#      args: {}
+#      runner:
+#        type: "constant"
+#        times: {{run_N_times}}
+#        concurrency: {{number_of_concurrent_scenarios}}
 
 
   KeystoneBasic.create_update_and_delete_tenant:
@@ -1332,13 +1159,13 @@
         concurrency: {{number_of_concurrent_scenarios}}
 
 
-  KeystoneBasic.create_user:
-    -
-      args: {}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
+#  KeystoneBasic.create_user:
+#    -
+#      args: {}
+#      runner:
+#        type: "constant"
+#        times: {{run_N_times}}
+#        concurrency: {{number_of_concurrent_scenarios}}
 
 
   KeystoneBasic.get_entities:
@@ -1478,22 +1305,6 @@
 
 
   NeutronNetworks.create_and_list_networks:
-    -
-      args:
-        network_create_args: {}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-        quotas:
-          neutron: {{neutron_quotas_params}}
-      sla:
-        failure_rate:
-          max: {{sla_failure_rate_max}}
     -
       args:
         network_create_args:
@@ -1820,23 +1631,8 @@
             name: "{{flavor_name}}"
         image:
             name: "{{image_name}}"
-        force_delete: {{force_delete}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-
-    -
-      args:
-        flavor:
-            name: "{{flavor_name}}"
-        image:
-            name: "{{image_name}}"
         auto_assign_nic: true
+        force_delete: {{force_delete}}
       runner:
         type: "constant"
         times: {{run_N_times}}
@@ -1887,22 +1683,6 @@
 
 
   NovaServers.boot_and_live_migrate_server:
-  - args:
-      flavor:
-        name: "{{flavor_name}}"
-      image:
-        name: "{{image_name}}"
-      block_migration: {{block_migration}}
-    runner:
-      type: "constant"
-      times: {{run_N_times}}
-      concurrency: {{number_of_concurrent_scenarios}}
-    context:
-      users:
-        tenants: {{number_of_tenants}}
-        users_per_tenant: {{users_per_tenant}}
-
-  # boot-and-block-migrate.json
   - args:
       flavor:
         name: "{{flavor_name}}"
@@ -2242,21 +2022,21 @@
           users_per_tenant: {{users_per_tenant}}
 
 
-  NovaServers.boot_server:
-    -
-      args:
-        flavor:
-            name: "{{flavor_name}}"
-        image:
-            name: "{{image_name}}"
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
+#  NovaServers.boot_server:
+#    -
+#      args:
+#        flavor:
+#            name: "{{flavor_name}}"
+#        image:
+#            name: "{{image_name}}"
+#      runner:
+#        type: "constant"
+#        times: {{run_N_times}}
+#        concurrency: {{number_of_concurrent_scenarios}}
+#      context:
+#        users:
+#          tenants: {{number_of_tenants}}
+#          users_per_tenant: {{users_per_tenant}}
 
 
   NovaAggregates.create_aggregate_add_and_remove_host:
@@ -2543,16 +2323,16 @@
           max: {{sla_failure_rate_max}}
 
 
-  NovaFlavors.create_flavor:
-    -
-      args:
-        ram: {{flavor_specification['ram']}}
-        vcpus: {{flavor_specification['vcpus']}}
-        disk: {{flavor_specification['disk']}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
+#  NovaFlavors.create_flavor:
+#    -
+#      args:
+#        ram: {{flavor_specification['ram']}}
+#        vcpus: {{flavor_specification['vcpus']}}
+#        disk: {{flavor_specification['disk']}}
+#      runner:
+#        type: "constant"
+#        times: {{run_N_times}}
+#        concurrency: {{number_of_concurrent_scenarios}}
 
 
   NovaAgents.list_agents:
@@ -2563,12 +2343,12 @@
         times: {{run_N_times}}
 
 
-  NovaAggregates.list_aggregates:
-    -
-      runner:
-        type: "constant"
-        concurrency: {{number_of_concurrent_scenarios}}
-        times: {{run_N_times}}
+#  NovaAggregates.list_aggregates:
+#    -
+#      runner:
+#        type: "constant"
+#        concurrency: {{number_of_concurrent_scenarios}}
+#        times: {{run_N_times}}
 
 
   NovaHosts.list_and_get_hosts:

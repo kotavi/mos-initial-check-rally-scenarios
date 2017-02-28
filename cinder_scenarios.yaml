@@ -19,23 +19,6 @@
   CinderVolumes.create_and_attach_volume:
     -
       args:
-          size: {{cinder_volume_size}}
-          image:
-            name: "{{image_name}}"
-          flavor:
-            name: "{{flavor_name}}"
-          create_volume_params:
-            availability_zone: "{{availability_zone}}"
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-    -
-      args:
         size:
           min: {{cinder_volume_min_size}}
           max: {{cinder_volume_max_size}}
@@ -88,19 +71,6 @@
 
 
   CinderVolumes.create_and_delete_volume:
-    -
-      args:
-        size: {{cinder_volume_size}}
-        image:
-            name: "{{image_name}}"
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
     -
       args:
         size:
@@ -244,28 +214,27 @@
         roles:
           - "Member"
 
-#  CinderVolumes.create_volume_and_update_readonly_flag:
-#    -
-#      args:
-#        size: {{cinder_volume_size}}
-#        read_only: {{cinder_read_only_volume}}
-#      runner:
-#        type: "constant"
-#        times: {{run_N_times}}
-#        concurrency: {{number_of_concurrent_scenarios}}
-#      context:
-#        users:
-#          tenants: {{number_of_tenants}}
-#          users_per_tenant: {{users_per_tenant}}
-#      sla:
-#        failure_rate:
-#          max: {{sla_failure_rate_max}}
+  CinderVolumes.create_volume_and_update_readonly_flag:
+    -
+      args:
+        size: {{cinder_volume_size}}
+        read_only: {{cinder_read_only_volume}}
+      runner:
+        type: "constant"
+        times: {{run_N_times}}
+        concurrency: {{number_of_concurrent_scenarios}}
+      context:
+        users:
+          tenants: {{number_of_tenants}}
+          users_per_tenant: {{users_per_tenant}}
+      sla:
+        failure_rate:
+          max: {{sla_failure_rate_max}}
 
 
   CinderVolumes.create_and_update_volume:
     -
       args:
-        read_only: {{cinder_read_only_volume}}
         update_volume_kwargs:
            display_name: "name_updated"
            display_description: "desc_updated"
@@ -304,25 +273,25 @@
           users_per_tenant: {{users_per_tenant}}
 
 
-  CinderVolumeTypes.create_volume_type_and_encryption_type:
-    -
-      args:
-        specs:
-          provider: "LuksEncryptor"
-          cipher: "aes-xts-plain64"
-          key_size: 512
-          control_location: "front-end"
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-      sla:
-        failure_rate:
-          max: {{sla_failure_rate_max}}
+#  CinderVolumeTypes.create_volume_type_and_encryption_type:
+#    -
+#      args:
+#        specs:
+#          provider: "LuksEncryptor"
+#          cipher: "aes-xts-plain64"
+#          key_size: 512
+#          control_location: "front-end"
+#      runner:
+#        type: "constant"
+#        times: {{run_N_times}}
+#        concurrency: {{number_of_concurrent_scenarios}}
+#      context:
+#        users:
+#          tenants: {{number_of_tenants}}
+#          users_per_tenant: {{users_per_tenant}}
+#      sla:
+#        failure_rate:
+#          max: {{sla_failure_rate_max}}
 
 
   CinderVolumes.create_from_volume_and_delete_volume:
@@ -463,12 +432,26 @@
           size: {{cinder_volume_size_before_benchmarking}}
 
 
-  CinderVolumes.create_volume:
+#  CinderVolumes.create_volume:
+#    -
+#      args:
+#        size:
+#          min: {{cinder_volume_min_size}}
+#          max: {{cinder_volume_max_size}}
+#      runner:
+#        type: "constant"
+#        times: {{run_N_times}}
+#        concurrency: {{number_of_concurrent_scenarios}}
+#      context:
+#        users:
+#          tenants: {{number_of_tenants}}
+#          users_per_tenant: {{users_per_tenant}}
+
+  CinderVolumes.create_volume_and_update_readonly_flag:
     -
       args:
-        size:
-          min: {{cinder_volume_min_size}}
-          max: {{cinder_volume_max_size}}
+        size: {{cinder_volume_size}}
+        read_only: {{cinder_read_only_volume}}
       runner:
         type: "constant"
         times: {{run_N_times}}
@@ -477,6 +460,9 @@
         users:
           tenants: {{number_of_tenants}}
           users_per_tenant: {{users_per_tenant}}
+      sla:
+        failure_rate:
+          max: {{sla_failure_rate_max}}
 
   CinderVolumes.list_transfers:
     -
@@ -512,21 +498,21 @@
           max: {{sla_failure_rate_max}}
 
 
-  CinderVolumes.list_volumes:
-    -
-      args:
-        detailed: {{cinder_detailed_info}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
-        volumes:
-          size: {{cinder_volume_size_before_benchmarking}}
-          volumes_per_tenant: {{cinder_volumes_per_tenant}}
+#  CinderVolumes.list_volumes:
+#    -
+#      args:
+#        detailed: {{cinder_detailed_info}}
+#      runner:
+#        type: "constant"
+#        times: {{run_N_times}}
+#        concurrency: {{number_of_concurrent_scenarios}}
+#      context:
+#        users:
+#          tenants: {{number_of_tenants}}
+#          users_per_tenant: {{users_per_tenant}}
+#        volumes:
+#          size: {{cinder_volume_size_before_benchmarking}}
+#          volumes_per_tenant: {{cinder_volumes_per_tenant}}
 
 
   CinderVolumes.modify_volume_metadata:

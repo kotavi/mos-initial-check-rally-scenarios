@@ -1,8 +1,9 @@
 {
-    "HeatStacks.create_and_list_stack": [
+    "CinderVolumes.create_volume_and_update_readonly_flag": [
         {
             "args": {
-               "template_path": "heat/templates/default.yaml.template"
+                "size": {{cinder_volume_size}},
+                "read_only": {{cinder_read_only_volume}}
             },
             "runner": {
                 "type": "constant",
@@ -13,6 +14,11 @@
                 "users": {
                     "tenants": {{number_of_tenants}},
                     "users_per_tenant": {{users_per_tenant}}
+                }
+            },
+            "sla": {
+                "failure_rate": {
+                    "max": {{sla_failure_rate_max}}
                 }
             }
         }

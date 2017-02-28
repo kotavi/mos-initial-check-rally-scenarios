@@ -134,21 +134,21 @@
 
 
 
-#  NovaServers.boot_and_live_migrate_server:
-#  - args:
-#      flavor:
-#        name: "{{flavor_name}}"
-#      image:
-#        name: "{{image_name}}"
-#      block_migration: {{block_migration}}
-#    runner:
-#      type: "constant"
-#      times: {{run_N_times}}
-#      concurrency: {{number_of_concurrent_scenarios}}
-#    context:
-#      users:
-#        tenants: {{number_of_tenants}}
-#        users_per_tenant: {{users_per_tenant}}
+  NovaServers.boot_and_live_migrate_server:
+  - args:
+      flavor:
+        name: "{{flavor_name}}"
+      image:
+        name: "{{image_name}}"
+      block_migration: {{block_migration}}
+    runner:
+      type: "constant"
+      times: {{run_N_times}}
+      concurrency: {{number_of_concurrent_scenarios}}
+    context:
+      users:
+        tenants: {{number_of_tenants}}
+        users_per_tenant: {{users_per_tenant}}
 
 
   NovaServers.boot_and_migrate_server:
@@ -474,21 +474,21 @@
           users_per_tenant: {{users_per_tenant}}
 
 
-  NovaServers.boot_server:
-    -
-      args:
-        flavor:
-            name: "{{flavor_name}}"
-        image:
-            name: "{{image_name}}"
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
-      context:
-        users:
-          tenants: {{number_of_tenants}}
-          users_per_tenant: {{users_per_tenant}}
+#  NovaServers.boot_server:
+#    -
+#      args:
+#        flavor:
+#            name: "{{flavor_name}}"
+#        image:
+#            name: "{{image_name}}"
+#      runner:
+#        type: "constant"
+#        times: {{run_N_times}}
+#        concurrency: {{number_of_concurrent_scenarios}}
+#      context:
+#        users:
+#          tenants: {{number_of_tenants}}
+#          users_per_tenant: {{users_per_tenant}}
 
 
   NovaAggregates.create_aggregate_add_and_remove_host:
@@ -775,16 +775,16 @@
           max: {{sla_failure_rate_max}}
 
 
-  NovaFlavors.create_flavor:
-    -
-      args:
-        ram: {{flavor_specification['ram']}}
-        vcpus: {{flavor_specification['vcpus']}}
-        disk: {{flavor_specification['disk']}}
-      runner:
-        type: "constant"
-        times: {{run_N_times}}
-        concurrency: {{number_of_concurrent_scenarios}}
+#  NovaFlavors.create_flavor:
+#    -
+#      args:
+#        ram: {{flavor_specification['ram']}}
+#        vcpus: {{flavor_specification['vcpus']}}
+#        disk: {{flavor_specification['disk']}}
+#      runner:
+#        type: "constant"
+#        times: {{run_N_times}}
+#        concurrency: {{number_of_concurrent_scenarios}}
 
 
   NovaAgents.list_agents:
@@ -795,12 +795,12 @@
         times: {{run_N_times}}
 
 
-  NovaAggregates.list_aggregates:
-    -
-      runner:
-        type: "constant"
-        concurrency: {{number_of_concurrent_scenarios}}
-        times: {{run_N_times}}
+#  NovaAggregates.list_aggregates:
+#    -
+#      runner:
+#        type: "constant"
+#        concurrency: {{number_of_concurrent_scenarios}}
+#        times: {{run_N_times}}
 
 
   NovaHosts.list_and_get_hosts:
