@@ -6,7 +6,7 @@ python combine_files.py `<path_to_folder>` `<name_of_file>.yaml`
 
 Example:
 
-python combine_files.py cinder/ cinder_scenarios.yaml
+`python combine_files.py cinder/ cinder_scenarios.yaml`
 
 Steps:
 
