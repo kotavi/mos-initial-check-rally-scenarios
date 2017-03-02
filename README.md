@@ -1,12 +1,16 @@
 # mos-initial-check-rally-scenarios
 
-#### How to update yaml files with all scenarios
+#### How to create yaml files with all scenarios
 
-python combine_files.py `<path_to_folder>` `<name_of_file>.yaml`
+python combine_files.py --path `<path_to_folder>` --filename `<name_of_file>.yaml`
 
-Example:
+Example 1. Here we create cinder_scenarios.yaml with all scenarios from cinder/ folder:
 
-`python combine_files.py cinder/ cinder_scenarios.yaml`
+`python combine_files.py --path cinder/ --filename cinder_scenarios.yaml`
+
+Example 2. Here we create all_scenarios.yaml with all scenarios from all folder:
+
+`python combine_files.py --filename all_scenarios.yaml`
 
 Steps:
 
