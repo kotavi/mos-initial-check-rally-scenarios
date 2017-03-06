@@ -1,6 +1,6 @@
 ---
 # parameters appearing in all scenarios
-  image_name: "TestVM$"
+  image_name: "TestVM"
   flavor_name: "m1.tiny"
   number_of_concurrent_scenarios: 1 # how many scenarios will be run at the same time
   run_N_times: 1
