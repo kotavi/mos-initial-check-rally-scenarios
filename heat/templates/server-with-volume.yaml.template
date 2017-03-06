@@ -4,14 +4,11 @@ parameters:
   # set all correct defaults for parameters before launch test
   image:
     type: string
-    default: TestVM
   flavor:
     type: string
-    default: m1.tiny
   availability_zone:
     type: string
     description: The Availability Zone to launch the instance.
-    default: nova
   volume_size:
     type: number
     description: Size of the volume to be created.

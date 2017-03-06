@@ -16,6 +16,10 @@
   # create-and-delete-stack-with-neutron
     -
       args:
+        parameters:
+          image: {{image_name}}
+          flavor: {{flavor_name}}
+          public_net: {{neutron_floating_network}}
         template_path: "heat/templates/server-with-ports.yaml.template"
       runner:
         type: "constant"
@@ -30,6 +34,10 @@
     -
       args:
         template_path: "heat/templates/server-with-volume.yaml.template"
+        parameters:
+          image: {{image_name}}
+          flavor: {{flavor_name}}
+          instance_availability_zone: {{availability_zone}}
       runner:
         type: "constant"
         times: {{run_N_times}}
@@ -44,7 +52,10 @@
       args:
         template_path: "heat/templates/resource-group-server-with-volume.yaml.template"
         parameters:
-           num_instances: {{num_instances_in_stack}}
+#           num_instances: {{num_instances_in_stack}}
+           instance_image: {{image_name}}
+           instance_flavor: {{flavor_name}}
+           instance_availability_zone: {{availability_zone}}
         files: ["heat/templates/server-with-volume.yaml.template"]
       runner:
         type: "constant"

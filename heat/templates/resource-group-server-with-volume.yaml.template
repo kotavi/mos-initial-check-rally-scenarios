@@ -14,7 +14,6 @@ parameters:
       - range: {min: 1}
   instance_image:
     type: string
-    default: TestVM
   instance_volume_size:
     type: number
     description: Size of volume to attach to instance
@@ -24,11 +23,9 @@ parameters:
   instance_flavor:
     type: string
     description: Type of the instance to be created.
-    default: m1.tiny
   instance_availability_zone:
     type: string
     description: The Availability Zone to launch the instance.
-    default: nova
 
 resources:
   group_of_volumes:

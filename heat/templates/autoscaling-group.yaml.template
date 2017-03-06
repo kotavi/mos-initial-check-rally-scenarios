@@ -3,12 +3,10 @@ heat_template_version: 2013-05-23
 parameters:
   flavor:
     type: string
-    default: m1.tiny
     constraints:
       - custom_constraint: nova.flavor
   image:
     type: string
-    default: TestVM
     constraints:
       - custom_constraint: glance.image
   scaling_adjustment:

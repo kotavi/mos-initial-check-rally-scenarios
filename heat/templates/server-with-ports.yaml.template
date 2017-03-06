@@ -4,13 +4,10 @@ parameters:
   # set all correct defaults for parameters before launch test
   public_net:
     type: string
-    default: admin_floating_net
   image:
     type: string
-    default: TestVM
   flavor:
     type: string
-    default: m1.tiny
   cidr:
     type: string
     default: 11.11.11.0/24
