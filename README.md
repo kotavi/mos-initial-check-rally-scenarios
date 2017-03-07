@@ -2,6 +2,17 @@
 
 #### How to create yaml file with a list of scenarios
 
+```
+$ ./combine_files.py --help
+usage: combine_files.py [-h] [--path PATH] [--filename FILENAME]
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --path PATH          path to .yaml files, if specified then scenarios will
+                       be combined only for the specific component (e.g. nova)
+  --filename FILENAME  name of a new file where all scenarios will be stored
+```
+
 python combine_files.py --path `<path_to_folder>` --filename `<name_of_file>.yaml`
 
 Example 1. Here we create cinder_scenarios.yaml with all scenarios from cinder/ folder:
